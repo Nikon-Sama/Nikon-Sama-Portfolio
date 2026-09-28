@@ -1,311 +1,656 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nikon Sama | Visual Stories</title>
+<title>Nikon Sama | Visual Stories</title>
 
-    <meta name="description"
-        content="Nikon Sama — Videography, video editing, photography and creative visual production.">
+<meta name="description" content="Nikon Sama creates cinematic videos, professional edits, photography and visual stories.">
 
-    <link rel="stylesheet" href="style.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root{
+  --black:#070707;
+  --dark:#101010;
+  --gold:#d6b36a;
+  --gold-light:#f0d89c;
+  --white:#f5f2eb;
+  --muted:#aaa59b;
+  --red:#8e2424;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.6;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.container{
+  width:min(1120px,90%);
+  margin:auto;
+}
+
+/* NAVIGATION */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  padding:22px 0;
+  background:rgba(7,7,7,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(214,179,106,.12);
+}
+
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:1.15rem;
+  font-weight:700;
+  letter-spacing:3px;
+}
+
+.logo span{
+  color:var(--gold);
+}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+  font-size:.9rem;
+}
+
+.nav-links a{
+  color:#d8d4cc;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:var(--gold);
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 80% 30%,rgba(142,36,36,.18),transparent 30%),
+    radial-gradient(circle at 20% 80%,rgba(214,179,106,.08),transparent 28%),
+    var(--black);
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  border:1px solid rgba(214,179,106,.12);
+  border-radius:50%;
+  right:-180px;
+  top:20%;
+}
+
+.hero-content{
+  padding-top:80px;
+  max-width:850px;
+}
+
+.eyebrow{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:4px;
+  font-size:.78rem;
+  font-weight:600;
+  margin-bottom:25px;
+}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(4rem,12vw,8.5rem);
+  line-height:.9;
+  font-weight:600;
+  letter-spacing:-4px;
+}
+
+.hero h1 span{
+  color:var(--gold);
+}
+
+.hero-text{
+  max-width:650px;
+  margin:35px 0;
+  color:var(--muted);
+  font-size:1.1rem;
+}
+
+.buttons{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:15px 24px;
+  border:1px solid var(--gold);
+  font-weight:600;
+  transition:.3s;
+}
+
+.btn-primary{
+  background:var(--gold);
+  color:#090909;
+}
+
+.btn-primary:hover{
+  background:var(--gold-light);
+}
+
+.btn-outline:hover{
+  background:var(--gold);
+  color:#090909;
+}
+
+/* SECTIONS */
+
+section{
+  padding:110px 0;
+}
+
+.section-label{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:.75rem;
+  margin-bottom:15px;
+}
+
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.5rem,6vw,4.5rem);
+  line-height:1;
+  margin-bottom:25px;
+}
+
+.section-intro{
+  max-width:650px;
+  color:var(--muted);
+  margin-bottom:50px;
+}
+
+/* WORK */
+
+.work-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.project{
+  min-height:380px;
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(180deg,transparent 25%,rgba(0,0,0,.9)),
+    linear-gradient(135deg,#262626,#101010);
+  border:1px solid rgba(255,255,255,.08);
+  transition:.5s;
+}
+
+.project:nth-child(2){
+  background:
+    linear-gradient(180deg,transparent 25%,rgba(0,0,0,.9)),
+    linear-gradient(135deg,#321717,#111);
+}
+
+.project:nth-child(3){
+  background:
+    linear-gradient(180deg,transparent 25%,rgba(0,0,0,.9)),
+    linear-gradient(135deg,#29251b,#101010);
+}
+
+.project:nth-child(4){
+  background:
+    linear-gradient(180deg,transparent 25%,rgba(0,0,0,.9)),
+    linear-gradient(135deg,#181e22,#0b0b0b);
+}
+
+.project:hover{
+  transform:translateY(-7px);
+  border-color:rgba(214,179,106,.5);
+}
+
+.project-number{
+  color:var(--gold);
+  font-size:.75rem;
+  letter-spacing:2px;
+  margin-bottom:8px;
+}
+
+.project h3{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+}
+
+.project p{
+  color:#b7b2aa;
+  margin-top:8px;
+}
+
+/* SERVICES */
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1px;
+  background:rgba(214,179,106,.18);
+  border:1px solid rgba(214,179,106,.18);
+}
+
+.service{
+  padding:40px 30px;
+  background:var(--dark);
+  transition:.3s;
+}
+
+.service:hover{
+  background:#161616;
+}
+
+.service-number{
+  color:var(--gold);
+  font-size:.75rem;
+}
+
+.service h3{
+  margin:12px 0;
+  font-family:'Playfair Display',serif;
+  font-size:1.7rem;
+}
+
+.service p{
+  color:var(--muted);
+}
+
+/* ABOUT */
+
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+
+.about-box{
+  min-height:450px;
+  display:flex;
+  align-items:flex-end;
+  padding:35px;
+  background:
+    radial-gradient(circle at 70% 30%,rgba(214,179,106,.2),transparent 25%),
+    linear-gradient(145deg,#1b1b1b,#090909);
+  border:1px solid rgba(214,179,106,.2);
+}
+
+.about-box strong{
+  font-family:'Playfair Display',serif;
+  font-size:4rem;
+  line-height:1;
+  color:var(--gold);
+}
+
+.about-text p{
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+/* CONTACT */
+
+.contact{
+  text-align:center;
+  padding-bottom:130px;
+}
+
+.contact .section-intro{
+  margin:0 auto 35px;
+}
+
+.contact-links{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+/* FOOTER */
+
+footer{
+  padding:30px 0;
+  border-top:1px solid rgba(255,255,255,.08);
+  color:#77736c;
+  font-size:.85rem;
+}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero h1{
+    font-size:4rem;
+    letter-spacing:-2px;
+  }
+
+  .hero-text{
+    font-size:1rem;
+  }
+
+  section{
+    padding:80px 0;
+  }
+
+  .work-grid,
+  .services,
+  .about{
+    grid-template-columns:1fr;
+  }
+
+  .project{
+    min-height:330px;
+  }
+
+  .about-box{
+    min-height:330px;
+  }
+
+  .about-box strong{
+    font-size:3rem;
+  }
+
+  .footer-inner{
+    flex-direction:column;
+  }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
-    <header class="navbar">
-        <a href="#home" class="logo">NIKON <span>SAMA</span></a>
+<!-- NAVIGATION -->
 
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#work">Work</a>
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
+<nav>
+  <div class="container nav-inner">
+    <a href="#home" class="logo">NIKON <span>SAMA</span></a>
 
-        <a href="#contact" class="nav-button">Book a Project</a>
-    </header>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
 
-    <!-- HERO -->
-    <main>
+<!-- HERO -->
 
-        <section id="home" class="hero">
+<header class="hero" id="home">
+  <div class="container hero-content">
+
+    <div class="eyebrow">
+      Videography • Editing • Visual Storytelling
+    </div>
+
+    <h1>
+      Your Story.<br>
+      <span>Our Lens.</span>
+    </h1>
+
+    <p class="hero-text">
+      Nikon Sama creates cinematic visuals, powerful edits and
+      memorable content designed to make your story impossible to ignore.
+    </p>
+
+    <div class="buttons">
+      <a href="#work" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Book a Project</a>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- WORK -->
+
+<section id="work">
+  <div class="container">
+
+    <div class="section-label">Selected Work</div>
+
+    <h2 class="section-title">
+      Projects that speak.
+    </h2>
+
+    <p class="section-intro">
+      A growing collection of videography, photography and editing
+      projects created through the Nikon Sama creative process.
+    </p>
+
+    <div class="work-grid">
+
+      <article class="project">
+        <div class="project-number">PROJECT 01 • VIDEOGRAPHY</div>
+        <h3>Your First Project</h3>
+        <p>Your featured production will appear here.</p>
+      </article>
+
+      <article class="project">
+        <div class="project-number">PROJECT 02 • VIDEO EDITING</div>
+        <h3>Visual Story</h3>
+        <p>A space for one of your strongest edits.</p>
+      </article>
+
+      <article class="project">
+        <div class="project-number">PROJECT 03 • PHOTOGRAPHY</div>
+        <h3>Captured Moments</h3>
+        <p>Your photography portfolio will appear here.</p>
+      </article>
+
+      <article class="project">
+        <div class="project-number">PROJECT 04 • CREATIVE</div>
+        <h3>Creative Direction</h3>
+        <p>A showcase for your creative content.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
 
-            <div class="hero-content">
 
-                <p class="eyebrow">VIDEOGRAPHY • EDITING • VISUAL STORYTELLING</p>
+<!-- SERVICES -->
 
-                <h1>
-                    YOUR STORY.<br>
-                    <span>OUR LENS.</span>
-                </h1>
+<section id="services">
+  <div class="container">
 
-                <p class="hero-text">
-                    Creating cinematic visuals, powerful edits and memorable
-                    content that brings your ideas to life.
-                </p>
+    <div class="section-label">What I Do</div>
 
-                <div class="hero-buttons">
-                    <a href="#work" class="button primary">View My Work</a>
-                    <a href="#contact" class="button secondary">Let's Work Together</a>
-                </div>
+    <h2 class="section-title">
+      Visuals with purpose.
+    </h2>
+
+    <div class="services">
+
+      <div class="service">
+        <div class="service-number">01</div>
+        <h3>Videography</h3>
+        <p>
+          Cinematic video production for events, brands,
+          individuals and creative projects.
+        </p>
+      </div>
+
+      <div class="service">
+        <div class="service-number">02</div>
+        <h3>Video Editing</h3>
+        <p>
+          Professional editing, storytelling, pacing,
+          sound design and visual polish.
+        </p>
+      </div>
+
+      <div class="service">
+        <div class="service-number">03</div>
+        <h3>Photography</h3>
+        <p>
+          Intentional photographs created to capture
+          people, moments, products and experiences.
+        </p>
+      </div>
 
-            </div>
+      <div class="service">
+        <div class="service-number">04</div>
+        <h3>Creative Content</h3>
+        <p>
+          Short-form content and visual assets built
+          for modern social media platforms.
+        </p>
+      </div>
 
-            <div class="hero-card">
-                <div class="camera-icon">◉</div>
-                <p>NIKON SAMA</p>
-                <small>CREATIVE VISUALS</small>
-            </div>
+    </div>
+  </div>
+</section>
 
-        </section>
 
+<!-- ABOUT -->
 
-        <!-- PORTFOLIO -->
-        <section id="work" class="section">
+<section id="about">
+  <div class="container about">
 
-            <div class="section-heading">
-                <p class="eyebrow">SELECTED WORK</p>
+    <div class="about-box">
+      <strong>
+        N<br>
+        S
+      </strong>
+    </div>
 
-                <h2>Projects that <span>speak.</span></h2>
+    <div class="about-text">
 
-                <p>
-                    A selection of visual projects created through
-                    videography, photography and video editing.
-                </p>
-            </div>
+      <div class="section-label">About Nikon Sama</div>
 
+      <h2 class="section-title">
+        Behind every frame is a story.
+      </h2>
 
-            <div class="portfolio-grid">
+      <p>
+        Nikon Sama is a visual creative brand focused on
+        videography, video editing, photography and
+        storytelling.
+      </p>
 
-                <article class="project-card">
-                    <div class="project-placeholder">
-                        <span>PROJECT 01</span>
-                    </div>
+      <p>
+        The goal is simple: create visuals that don't just
+        look good, but communicate something people can feel
+        and remember.
+      </p>
 
-                    <div class="project-info">
-                        <p>VIDEOGRAPHY</p>
-                        <h3>Your First Project</h3>
-                        <span>Coming Soon</span>
-                    </div>
-                </article>
+      <a href="#contact" class="btn btn-outline">
+        Let's Create
+      </a>
 
+    </div>
 
-                <article class="project-card">
-                    <div class="project-placeholder">
-                        <span>PROJECT 02</span>
-                    </div>
+  </div>
+</section>
 
-                    <div class="project-info">
-                        <p>VIDEO EDITING</p>
-                        <h3>Your Second Project</h3>
-                        <span>Coming Soon</span>
-                    </div>
-                </article>
 
+<!-- CONTACT -->
 
-                <article class="project-card">
-                    <div class="project-placeholder">
-                        <span>PROJECT 03</span>
-                    </div>
+<section id="contact" class="contact">
+  <div class="container">
 
-                    <div class="project-info">
-                        <p>CREATIVE CONTENT</p>
-                        <h3>Your Third Project</h3>
-                        <span>Coming Soon</span>
-                    </div>
-                </article>
+    <div class="section-label">Start a Project</div>
 
+    <h2 class="section-title">
+      Let's create something unforgettable.
+    </h2>
 
-                <article class="project-card">
-                    <div class="project-placeholder">
-                        <span>PROJECT 04</span>
-                    </div>
+    <p class="section-intro">
+      Have a project, event, brand or idea you want to bring
+      to life? Let's talk.
+    </p>
 
-                    <div class="project-info">
-                        <p>PHOTOGRAPHY</p>
-                        <h3>Your Fourth Project</h3>
-                        <span>Coming Soon</span>
-                    </div>
-                </article>
+    <div class="contact-links">
 
-            </div>
+      <a class="btn btn-primary"
+         href="https://wa.me/2340000000000">
+        WhatsApp
+      </a>
 
-        </section>
+      <a class="btn btn-outline"
+         href="https://instagram.com/nikon_sama"
+         target="_blank">
+        Instagram
+      </a>
 
+    </div>
 
-        <!-- SERVICES -->
-        <section id="services" class="section services-section">
+  </div>
+</section>
 
-            <div class="section-heading">
-                <p class="eyebrow">WHAT I DO</p>
 
-                <h2>Visuals built for <span>impact.</span></h2>
-            </div>
+<!-- FOOTER -->
 
+<footer>
+  <div class="container footer-inner">
 
-            <div class="services-grid">
+    <div>
+      © 2026 Nikon Sama. All rights reserved.
+    </div>
 
-                <div class="service">
-                    <span class="service-number">01</span>
-                    <h3>Videography</h3>
-                    <p>
-                        Professional video coverage for events,
-                        businesses, brands, social media and creative projects.
-                    </p>
-                </div>
+    <div>
+      Visuals that tell your story.
+    </div>
 
-
-                <div class="service">
-                    <span class="service-number">02</span>
-                    <h3>Video Editing</h3>
-                    <p>
-                        Turning raw footage into engaging stories through
-                        editing, sound design, colour grading and visual effects.
-                    </p>
-                </div>
-
-
-                <div class="service">
-                    <span class="service-number">03</span>
-                    <h3>Photography</h3>
-                    <p>
-                        Clean and creative photography for events,
-                        portraits, products and lifestyle content.
-                    </p>
-                </div>
-
-
-                <div class="service">
-                    <span class="service-number">04</span>
-                    <h3>Content Creation</h3>
-                    <p>
-                        Short-form and social media content designed
-                        to capture attention and communicate your brand.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ABOUT -->
-        <section id="about" class="about section">
-
-            <div class="about-image">
-                <div class="about-placeholder">
-                    NIKON<br>SAMA
-                </div>
-            </div>
-
-
-            <div class="about-content">
-
-                <p class="eyebrow">ABOUT NIKON SAMA</p>
-
-                <h2>
-                    More than just<br>
-                    <span>shooting videos.</span>
-                </h2>
-
-                <p>
-                    Nikon Sama is a creative visual brand focused on
-                    videography, video editing, photography and digital
-                    content creation.
-                </p>
-
-                <p>
-                    Every project is an opportunity to tell a story,
-                    communicate an idea and create something people
-                    remember.
-                </p>
-
-                <a href="#contact" class="button primary">
-                    Start a Project
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- CALL TO ACTION -->
-        <section class="cta">
-
-            <p class="eyebrow">HAVE A PROJECT IN MIND?</p>
-
-            <h2>Let's create something<br><span>worth watching.</span></h2>
-
-            <a href="#contact" class="button primary">
-                Get In Touch
-            </a>
-
-        </section>
-
-
-        <!-- CONTACT -->
-        <section id="contact" class="section contact-section">
-
-            <div class="section-heading">
-
-                <p class="eyebrow">CONTACT</p>
-
-                <h2>Let's work <span>together.</span></h2>
-
-                <p>
-                    Have a project, event or creative idea?
-                    Send me a message and let's talk.
-                </p>
-
-            </div>
-
-
-            <div class="contact-grid">
-
-                <a href="https://wa.me/" class="contact-card">
-                    <span>WHATSAPP</span>
-                    <strong>Start a conversation →</strong>
-                </a>
-
-
-                <a href="mailto:your@email.com" class="contact-card">
-                    <span>EMAIL</span>
-                    <strong>Send an email →</strong>
-                </a>
-
-
-                <a href="https://instagram.com/nikon_sama"
-                   class="contact-card">
-                    <span>INSTAGRAM</span>
-                    <strong>@nikon_sama →</strong>
-                </a>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-    <footer>
-
-        <div>
-            <strong>NIKON SAMA</strong>
-            <p>Visual storytelling through the lens.</p>
-        </div>
-
-        <p>© 2026 Nikon Sama. All rights reserved.</p>
-
-    </footer>
-
-
-    <script src="script.js"></script>
+  </div>
+</footer>
 
 </body>
 </html>
